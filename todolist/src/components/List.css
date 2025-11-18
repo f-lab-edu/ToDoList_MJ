@@ -1,0 +1,15 @@
+.List {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.List .h2 {
+  font-size: 16px;
+  color: #000;
+}
+.List .todos_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
