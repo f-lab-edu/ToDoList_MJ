@@ -25,11 +25,15 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== targetId));
   };
 
+  const onEdit = (targetId, editContent) => {
+    setTodos((prev) => prev.map((todo) => (todo.id === targetId ? { ...todo, content: editContent } : todo)));
+  };
+
   return (
     <div className="area">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onDelete={onDelete} />
+      <List todos={todos} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );
 }
