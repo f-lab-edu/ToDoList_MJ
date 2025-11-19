@@ -22,7 +22,7 @@
 }
 .TodoItem .date {
   font-size: 14px;
-  color: #999;
+  color: #888;
 }
 .TodoItem button {
   cursor: pointer;
