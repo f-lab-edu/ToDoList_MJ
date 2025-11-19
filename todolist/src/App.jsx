@@ -29,11 +29,15 @@ function App() {
     setTodos((prev) => prev.map((todo) => (todo.id === targetId ? { ...todo, content: editContent } : todo)));
   };
 
+  const onUpdate = (targetId) => {
+    setTodos(todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo)));
+  };
+
   return (
     <div className="area">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onDelete={onDelete} onEdit={onEdit} />
+      <List todos={todos} onDelete={onDelete} onEdit={onEdit} onUpdate={onUpdate} />
     </div>
   );
 }
