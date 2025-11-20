@@ -6,7 +6,7 @@
   border-bottom: 1px solid #eee;
 }
 
-.TodoItem input {
+.TodoItem input[type="text"] {
   flex: 1;
   font-size: 14px;
   border: 1px solid #eee;
@@ -31,4 +31,11 @@
   border: none;
   border-radius: 5px;
   padding: 10.5px 8px;
+}
+.TodoItem input[type="checkbox"] {
+  width: auto;
+}
+.TodoItem input[type="checkbox"]:checked + .tit {
+  color: #999;
+  text-decoration: line-through;
 }

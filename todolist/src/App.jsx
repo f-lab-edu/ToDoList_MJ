@@ -20,7 +20,9 @@ function App() {
 
     setTodos([newTodo, ...todos]);
   };
-
+  const onUpdate = (targetId) => {
+    setTodos(todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo)));
+  };
   const onDelete = (targetId) => {
     setTodos(todos.filter((todo) => todo.id !== targetId));
   };
@@ -33,7 +35,7 @@ function App() {
     <div className="area">
       <Header />
       <Editor onCreate={onCreate} />
-      <List todos={todos} onDelete={onDelete} onEdit={onEdit} />
+      <List todos={todos} onUpdate={onUpdate} onDelete={onDelete} onEdit={onEdit} />
     </div>
   );
 }
