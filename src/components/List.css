@@ -1,14 +1,14 @@
-.List {
+.list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.List .h2 {
+.list .tit {
   font-size: 16px;
   color: #000;
 }
-.List .todos_wrapper {
+.list .todos_wrapper {
   display: flex;
   flex-direction: column;
   gap: 20px;

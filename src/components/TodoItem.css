@@ -1,4 +1,4 @@
-.TodoItem {
+.todo-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -6,7 +6,7 @@
   border-bottom: 1px solid #eee;
 }
 
-.TodoItem input.edit-input {
+.todo-item input.edit-input {
   flex: 1;
   font-size: 14px;
   border: 1px solid #eee;
@@ -14,20 +14,20 @@
   padding: 10px;
   box-sizing: border-box;
 }
-.TodoItem input.check-input {
+.todo-item input.check-input {
   width: auto;
 }
-.TodoItem .tit {
+.todo-item .tit {
   flex: 1;
   font-size: 16px;
   color: #000;
   font-weight: 500;
 }
-.TodoItem .date {
+.todo-item .date {
   font-size: 14px;
   color: #999;
 }
-.TodoItem button {
+.todo-item .todo-btn {
   cursor: pointer;
   color: #999;
   font-size: 12px;
@@ -36,7 +36,7 @@
   padding: 10.5px 8px;
 }
 
-.TodoItem input.check-input:checked + .tit {
+.todo-item input.check-input:checked + .tit {
   color: #999;
   text-decoration: line-through;
 }

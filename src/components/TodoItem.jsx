@@ -1,52 +1,30 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./TodoItem.css";
 
-const TodoItem = ({ id, isDone, content, date, onEdit, onDelete, onUpdate }) => {
+const TodoItem = ({ id, isDone, content, date, onDelete, onUpdate }) => {
+  const nav = useNavigate();
+
   const onClickDelete = () => {
     onDelete(id);
   };
-
-  const [isEdit, setIsEdit] = useState(false);
-  const [localContent, setLocalContent] = useState(content);
-
-  const handleEdit = () => {
-    setIsEdit(true);
-  };
-  const handleCancel = () => {
-    setIsEdit(false);
-    setLocalContent(content);
-  };
-  const handleSave = () => {
-    onEdit(id, localContent);
-    setIsEdit(false);
-  };
-
   const onChangeCheckbox = () => {
     onUpdate(id);
   };
+  const onClickLink = () => {
+    nav(`/view/${id}`, { state: { content } });
+  };
 
   return (
-    <div className="TodoItem">
-      {isEdit ? (
-        <>
-          <input
-            className="edit-input"
-            type="text"
-            value={localContent}
-            onChange={(e) => setLocalContent(e.target.value)}
-          />
-          <button onClick={handleSave}>완료</button>
-          <button onClick={handleCancel}>취소</button>
-        </>
-      ) : (
-        <>
-          <input className="check-input" onChange={onChangeCheckbox} readOnly checked={isDone} type="checkbox" />
-          <div className="tit">{content}</div>
-          <div className="date">{new Date(date).toLocaleDateString()}</div>
-          <button onClick={handleEdit}>수정</button>
-          <button onClick={onClickDelete}>삭제</button>
-        </>
-      )}
+    <div className="todo-item">
+      <input className="check-input" onChange={onChangeCheckbox} readOnly checked={isDone} type="checkbox" />
+      <div className="tit">{content}</div>
+      <div className="date">{new Date(date).toLocaleDateString()}</div>
+      <button className="todo-btn" onClick={onClickLink}>
+        수정
+      </button>
+      <button className="todo-btn" onClick={onClickDelete}>
+        삭제
+      </button>
     </div>
   );
 };

@@ -1,16 +1,16 @@
-.Editor {
+.editor {
   display: flex;
   gap: 10px;
 }
 
-.Editor input {
+.editor .user-input {
   flex: 1;
   padding: 15px;
   border: 1px solid #eee;
   border-radius: 5px;
 }
 
-.Editor button {
+.editor .add-btn {
   cursor: pointer;
   width: 80px;
   border: none;

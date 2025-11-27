@@ -2,8 +2,8 @@ import "./Header.css";
 
 const Header = () => {
   return (
-    <div className="Header">
-      <h1>ToDo List</h1>
+    <div className="header">
+      <h1 className="tit">ToDo List</h1>
     </div>
   );
 };

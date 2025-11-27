@@ -1,11 +1,11 @@
 import "./App.css";
 import { useState, useRef } from "react";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Editor from "./components/Editor";
-import List from "./components/List";
+import Home from "./pages/Home";
+import View from "./pages/View";
 
 const mockDate = [];
-
 function App() {
   const [todos, setTodos] = useState(mockDate);
   const idRef = useRef(0);
@@ -14,11 +14,11 @@ function App() {
     const newTodo = {
       id: idRef.current++,
       isDone: false,
-      content: content,
+      content,
       date: new Date().getTime(),
     };
 
-    setTodos([newTodo, ...todos]);
+    setTodos((prevTodos) => [newTodo, ...prevTodos]);
   };
 
   const onDelete = (targetId) => {
@@ -32,13 +32,19 @@ function App() {
   const onUpdate = (targetId) => {
     setTodos(todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo)));
   };
-
   return (
-    <div className="area">
-      <Header />
-      <Editor onCreate={onCreate} />
-      <List todos={todos} onDelete={onDelete} onEdit={onEdit} onUpdate={onUpdate} />
-    </div>
+    <>
+      <div className="area">
+        <Header />
+      </div>
+      <Routes>
+        <Route
+          path="/"
+          element={<Home todos={todos} onEdit={onEdit} onCreate={onCreate} onDelete={onDelete} onUpdate={onUpdate} />}
+        />
+        <Route path="/view/:id" element={<View todos={todos} onEdit={onEdit} />} />
+      </Routes>
+    </>
   );
 }
 
