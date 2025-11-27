@@ -1,13 +1,15 @@
 import "./App.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import View from "./pages/View";
 
-const mockDate = [];
 function App() {
-  const [todos, setTodos] = useState(mockDate);
+  const [todos, setTodos] = useState(() => {
+    const saved = localStorage.getItem("todos");
+    return saved ? JSON.parse(saved) : [];
+  });
   const idRef = useRef(0);
 
   const onCreate = (content) => {
@@ -32,6 +34,10 @@ function App() {
   const onUpdate = (targetId) => {
     setTodos(todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo)));
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
   return (
     <>
       <div className="area">
