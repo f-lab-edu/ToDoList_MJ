@@ -24,7 +24,11 @@ React 를 이용해 투두리스트의 항목을 생성하며, 항목별 뷰페�
 ```
 src/
  ├── App.css
- ├── App.jsx               # 전체 todos 상태 관리 / 라우터 연결
+ ├── App.jsx               # 전체 todos 상태 관리
+ ├── router/
+ │     ├── routes.jsx      # 라우트 관리
+ │     └── RouterView.jsx
+ │
  ├── index.css
  ├── main.jsx
  │

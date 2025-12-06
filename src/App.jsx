@@ -1,9 +1,7 @@
 import "./App.css";
 import { useState, useRef, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
 import Header from "./components/Header";
-import Home from "./pages/Home";
-import View from "./pages/View";
+import RouterDetails from "./router/RouterDetails";
 
 function App() {
   const [todos, setTodos] = useState(() => {
@@ -28,11 +26,19 @@ function App() {
   };
 
   const onEdit = (targetId, editContent) => {
-    setTodos((prev) => prev.map((todo) => (todo.id === targetId ? { ...todo, defaultContent: editContent } : todo)));
+    setTodos((prev) =>
+      prev.map((todo) =>
+        todo.id === targetId ? { ...todo, defaultContent: editContent } : todo
+      )
+    );
   };
 
   const onUpdate = (targetId) => {
-    setTodos(todos.map((todo) => (todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo)));
+    setTodos(
+      todos.map((todo) =>
+        todo.id === targetId ? { ...todo, isDone: !todo.isDone } : todo
+      )
+    );
   };
 
   useEffect(() => {
@@ -42,14 +48,14 @@ function App() {
     <>
       <div className="area">
         <Header />
-      </div>
-      <Routes>
-        <Route
-          path="/"
-          element={<Home todos={todos} onEdit={onEdit} onCreate={onCreate} onDelete={onDelete} onUpdate={onUpdate} />}
+        <RouterDetails
+          todos={todos}
+          onEdit={onEdit}
+          onCreate={onCreate}
+          onDelete={onDelete}
+          onUpdate={onUpdate}
         />
-        <Route path="/view/:id" element={<View todos={todos} onEdit={onEdit} />} />
-      </Routes>
+      </div>
     </>
   );
 }
