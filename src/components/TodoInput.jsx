@@ -1,28 +1,28 @@
-import "./Editor.css";
+import "./TodoInput.css";
 import { useState, useRef } from "react";
-import { key } from "./constants";
+import { KEY } from "./constants";
 
 const Editor = ({ onCreate }) => {
-  const [content, setContent] = useState("");
+  const [defaultContent, setDefaultContent] = useState("");
   const contentRef = useRef();
 
   const onChangeContent = (e) => {
-    setContent(e.target.value);
+    setDefaultContent(e.target.value);
   };
   const onKeydown = (e) => {
-    if (e.keyCode === key.Enter) {
+    if (e.keyCode === KEY.ENTER) {
       onSubmit();
     }
   };
 
   const onSubmit = () => {
-    if (content === "") {
+    if (defaultContent === "") {
       alert("할 일을 작성해주세요.");
       contentRef.current.focus();
       return;
     }
-    onCreate(content);
-    setContent("");
+    onCreate(defaultContent);
+    setDefaultContent("");
   };
 
   return (
@@ -30,7 +30,7 @@ const Editor = ({ onCreate }) => {
       <input
         className="user-input"
         ref={contentRef}
-        value={content}
+        value={defaultContent}
         onKeyDown={onKeydown}
         onChange={onChangeContent}
         placeholder="할 일을 작성해주세요."

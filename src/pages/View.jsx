@@ -1,11 +1,11 @@
-import TodoView from "./../components/TodoView";
+import TodoDetail from "../components/TodoDetail";
 
-const View = ({ todos, onEdit }) => {
+const Detail = ({ todos, onEdit }) => {
   return (
     <div className="area">
-      <TodoView todos={todos} onEdit={onEdit} />
+      <TodoDetail todos={todos} onEdit={onEdit} />
     </div>
   );
 };
 
-export default View;
+export default Detail;

@@ -12,11 +12,11 @@ function App() {
   });
   const idRef = useRef(0);
 
-  const onCreate = (content) => {
+  const onCreate = (defaultContent) => {
     const newTodo = {
       id: idRef.current++,
       isDone: false,
-      content,
+      defaultContent,
       date: new Date().getTime(),
     };
 
@@ -28,7 +28,7 @@ function App() {
   };
 
   const onEdit = (targetId, editContent) => {
-    setTodos((prev) => prev.map((todo) => (todo.id === targetId ? { ...todo, content: editContent } : todo)));
+    setTodos((prev) => prev.map((todo) => (todo.id === targetId ? { ...todo, defaultContent: editContent } : todo)));
   };
 
   const onUpdate = (targetId) => {
