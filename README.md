@@ -24,17 +24,21 @@ React 를 이용해 투두리스트의 항목을 생성하며, 항목별 뷰페�
 ```
 src/
  ├── App.css
- ├── App.jsx               # 전체 todos 상태 관리
+ ├── App.jsx                # 전체 todos 상태 관리
+ ├── hooks/
+ │     └── useTodos.js      # Todo 기능
+ ├── services/
+ │     └── todoStorage.js   # localStorage 저장/로드
  ├── router/
- │     ├── routes.jsx      # 라우트 관리
+ │     ├── routes.jsx       # 라우트 관리
  │     └── RouterView.jsx
  │
  ├── index.css
  ├── main.jsx
  │
  ├── pages/
- │     ├── Home.jsx        # 메인 Todo 페이지
- │     └── View.jsx        # /view/:id 라우트 페이지
+ │     ├── Home.jsx         # 메인 Todo 페이지
+ │     └── View.jsx         # /view/:id 라우트 페이지
  │
  ├── components/
  │     ├── Header.jsx
@@ -46,7 +50,7 @@ src/
  │     ├── TodoItem.jsx
  │     ├── TodoItem.css
  │     ├── TodoView.jsx
- │     ├── constants.jsx   # 공통 상수 저장 (예: ENTER_KEY)
+ │     ├── constants.jsx    # 공통 상수 저장 (예: ENTER_KEY)
  │
  └──
 
