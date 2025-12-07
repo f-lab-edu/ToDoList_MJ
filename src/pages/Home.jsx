@@ -1,11 +1,11 @@
 import TodoInput from "../components/TodoInput";
 import List from "./../components/List";
 
-const Home = ({ todos, onEdit, onCreate, onDelete, onUpdate }) => {
+const Home = () => {
   return (
     <div className="area">
-      <TodoInput onCreate={onCreate} />
-      <List todos={todos} onDelete={onDelete} onEdit={onEdit} onUpdate={onUpdate} />
+      <TodoInput />
+      <List />
     </div>
   );
 };

@@ -23,18 +23,23 @@ React 를 이용해 투두리스트의 항목을 생성하며, 항목별 뷰페�
 
 ```
 src/
+ ├── index.css
+ ├── main.jsx
  ├── App.css
  ├── App.jsx                # 전체 todos 상태 관리
+ │
+ ├── context/
+ │     └── TodosContext.jsx # Todo Context 파일
+ │
  ├── hooks/
  │     └── useTodos.js      # Todo 기능
+ │
  ├── services/
  │     └── todoStorage.js   # localStorage 저장/로드
+ │
  ├── router/
  │     ├── routes.jsx       # 라우트 관리
  │     └── RouterView.jsx
- │
- ├── index.css
- ├── main.jsx
  │
  ├── pages/
  │     ├── Home.jsx         # 메인 Todo 페이지

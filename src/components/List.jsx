@@ -1,8 +1,11 @@
 import "./List.css";
 import TodoItem from "./TodoItem";
 import { useState } from "react";
+import { useTodosContext } from "../context/TodosContext";
 
-const List = ({ todos, onEdit, onDelete, onUpdate }) => {
+const List = () => {
+  const { todos } = useTodosContext();
+
   const [page, setPage] = useState(1);
   const perPage = 5;
   const totalPages = Math.ceil(todos.length / perPage);
@@ -19,13 +22,7 @@ const List = ({ todos, onEdit, onDelete, onUpdate }) => {
       <h2 className="tit">오늘의 할 일</h2>
       <div className="todos_wrapper">
         {currentTodos.map((todo) => (
-          <TodoItem
-            key={todo.id}
-            {...todo}
-            onDelete={onDelete}
-            onEdit={onEdit}
-            onUpdate={onUpdate}
-          />
+          <TodoItem key={todo.id} {...todo} />
         ))}
       </div>
       <div className="pagination">

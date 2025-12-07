@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { KEY } from "./constants";
 import "./TodoItem.css";
+import { useTodosContext } from "../context/TodosContext";
 
-const TodoDetail = ({ todos, onEdit }) => {
+const TodoDetail = () => {
+  const { todos, onEdit } = useTodosContext();
+
   const nav = useNavigate();
   const { id } = useParams();
 

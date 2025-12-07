@@ -1,8 +1,11 @@
 import "./TodoInput.css";
 import { useState, useRef } from "react";
 import { KEY } from "./constants";
+import { useTodosContext } from "../context/TodosContext";
 
-const Editor = ({ onCreate }) => {
+const Editor = () => {
+  const { onCreate } = useTodosContext();
+
   const [defaultContent, setDefaultContent] = useState("");
   const contentRef = useRef();
 
