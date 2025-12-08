@@ -5,14 +5,12 @@ import { TodosProvider } from "./context/TodosContext";
 
 function App() {
   return (
-    <>
-      <div className="area">
-        <Header />
-        <TodosProvider>
-          <RouterDetails />
-        </TodosProvider>
-      </div>
-    </>
+    <div className="area">
+      <Header />
+      <TodosProvider>
+        <RouterDetails />
+      </TodosProvider>
+    </div>
   );
 }
 

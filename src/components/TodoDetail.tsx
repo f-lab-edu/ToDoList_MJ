@@ -19,7 +19,6 @@ const TodoDetail = () => {
     } else {
       alert("존재하지 않는 항목입니다.");
       nav("/");
-      return;
     }
   }, [id, todos]);
 
