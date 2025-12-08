@@ -1,6 +1,6 @@
 import TodoDetail from "../components/TodoDetail";
 
-const Detail = ({ todos, onEdit }) => {
+const Detail = () => {
   return (
     <div className="area">
       <TodoDetail />

@@ -1,5 +1,5 @@
 import TodoInput from "../components/TodoInput";
-import List from "./../components/List";
+import List from "../components/List";
 
 const Home = () => {
   return (

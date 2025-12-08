@@ -1,3 +1,3 @@
 export const KEY = {
-  ENTER: 13,
+  ENTER: 13 as const,
 };

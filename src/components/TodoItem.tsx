@@ -1,8 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useTodosContext } from "../context/TodosContext";
+import type { Todo } from "../types/todo";
 import "./TodoItem.css";
 
-const TodoItem = ({ id, isDone, defaultContent, date }) => {
+type TodoItemProps = Todo;
+
+const TodoItem = ({ id, isDone, defaultContent, date }: TodoItemProps) => {
   const { onDelete, onUpdate } = useTodosContext();
   const nav = useNavigate();
 
@@ -18,13 +21,7 @@ const TodoItem = ({ id, isDone, defaultContent, date }) => {
 
   return (
     <div className="todo-item">
-      <input
-        className="check-input"
-        onChange={onChangeCheckbox}
-        readOnly
-        checked={isDone}
-        type="checkbox"
-      />
+      <input className="check-input" onChange={onChangeCheckbox} readOnly checked={isDone} type="checkbox" />
       <div className="tit">{defaultContent}</div>
       <div className="date">{new Date(date).toLocaleDateString()}</div>
       <button className="todo-btn" onClick={onClickLink}>

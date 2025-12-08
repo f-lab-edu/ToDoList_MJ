@@ -1,18 +1,18 @@
 import "./TodoInput.css";
-import { useState, useRef } from "react";
+import { useState, useRef, KeyboardEvent, ChangeEvent } from "react";
 import { KEY } from "./constants";
 import { useTodosContext } from "../context/TodosContext";
 
-const Editor = () => {
+const TodoInput = () => {
   const { onCreate } = useTodosContext();
 
   const [defaultContent, setDefaultContent] = useState("");
-  const contentRef = useRef();
+  const contentRef = useRef<HTMLInputElement | null>(null);
 
-  const onChangeContent = (e) => {
+  const onChangeContent = (e: ChangeEvent<HTMLInputElement>) => {
     setDefaultContent(e.target.value);
   };
-  const onKeydown = (e) => {
+  const onKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === KEY.ENTER) {
       onSubmit();
     }
@@ -21,7 +21,7 @@ const Editor = () => {
   const onSubmit = () => {
     if (defaultContent === "") {
       alert("할 일을 작성해주세요.");
-      contentRef.current.focus();
+      contentRef.current?.focus();
       return;
     }
     onCreate(defaultContent);
@@ -45,4 +45,4 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default TodoInput;

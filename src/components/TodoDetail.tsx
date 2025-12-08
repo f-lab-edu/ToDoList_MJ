@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent, KeyboardEvent } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { KEY } from "./constants";
 import "./TodoItem.css";
@@ -8,7 +8,7 @@ const TodoDetail = () => {
   const { todos, onEdit } = useTodosContext();
 
   const nav = useNavigate();
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
   const [content, setContent] = useState("");
   const target = todos.find((todo) => todo.id === Number(id));
@@ -52,11 +52,11 @@ const TodoDetail = () => {
     updateData();
   };
 
-  const onEditContent = (e) => {
+  const onEditContent = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   };
 
-  const onKeydown = (e) => {
+  const onKeydown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.keyCode === KEY.ENTER) {
       handleSave();
     }
@@ -64,13 +64,7 @@ const TodoDetail = () => {
 
   return (
     <div className="todo-item">
-      <input
-        className="edit-input"
-        type="text"
-        value={content}
-        onChange={onEditContent}
-        onKeyDown={onKeydown}
-      />
+      <input className="edit-input" type="text" value={content} onChange={onEditContent} onKeyDown={onKeydown} />
       <button className="todo-btn" onClick={handleSave}>
         완료
       </button>
