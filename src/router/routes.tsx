@@ -1,5 +1,5 @@
 import Home from "../pages/Home";
-import View from "../pages/View";
+import Detail from "../pages/Detail";
 
 export const ROUTES = [
   {
@@ -8,6 +8,6 @@ export const ROUTES = [
   },
   {
     path: "/view/:id",
-    element: View,
+    element: Detail,
   },
 ];

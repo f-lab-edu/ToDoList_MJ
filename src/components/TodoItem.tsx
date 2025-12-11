@@ -3,11 +3,12 @@ import { useTodosContext } from "../context/TodosContext";
 import type { Todo } from "../types/todo";
 import "./TodoItem.css";
 
-type TodoItemProps = Todo;
+type TodoItemProps = { todo: Todo };
 
-const TodoItem = ({ id, isDone, defaultContent, date }: TodoItemProps) => {
+const TodoItem = ({ todo }: TodoItemProps) => {
+  const { id, isDone, content, date } = todo;
   const { onDelete, onUpdate } = useTodosContext();
-  const nav = useNavigate();
+  const navigation = useNavigate();
 
   const onClickDelete = () => {
     onDelete(id);
@@ -16,13 +17,13 @@ const TodoItem = ({ id, isDone, defaultContent, date }: TodoItemProps) => {
     onUpdate(id);
   };
   const onClickLink = () => {
-    nav(`/view/${id}`, { state: { defaultContent } });
+    navigation(`/view/${id}`, { state: { content } });
   };
 
   return (
     <div className="todo-item">
       <input className="check-input" onChange={onChangeCheckbox} readOnly checked={isDone} type="checkbox" />
-      <div className="tit">{defaultContent}</div>
+      <div className="tit">{content}</div>
       <div className="date">{new Date(date).toLocaleDateString()}</div>
       <button className="todo-btn" onClick={onClickLink}>
         수정

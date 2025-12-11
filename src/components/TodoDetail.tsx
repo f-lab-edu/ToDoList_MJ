@@ -7,25 +7,25 @@ import { useTodosContext } from "../context/TodosContext";
 const TodoDetail = () => {
   const { todos, onEdit } = useTodosContext();
 
-  const nav = useNavigate();
+  const navigation = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const [content, setContent] = useState("");
-  const target = todos.find((todo) => todo.id === Number(id));
+  const todo = todos.find((todo) => todo.id === Number(id));
 
   useEffect(() => {
-    if (target) {
-      setContent(target.defaultContent);
+    if (todo) {
+      setContent(todo.content);
     } else {
       alert("존재하지 않는 항목입니다.");
-      nav("/");
+      navigation("/");
     }
   }, [id, todos]);
 
   const updateTodoContent = async () => {
-    if (!target) return false;
+    if (!todo) return false;
 
-    await Promise.resolve(onEdit(target.id, content));
+    await Promise.resolve(onEdit(todo.id, content));
     return true;
   };
 
@@ -36,7 +36,7 @@ const TodoDetail = () => {
       if (!ok) throw new Error("Invalid todo id");
 
       alert("저장했습니다.");
-      nav("/");
+      navigation("/");
     } catch (err) {
       console.error(err);
       alert("저장에 실패했습니다.");
@@ -44,7 +44,7 @@ const TodoDetail = () => {
   };
 
   const handleCancel = () => {
-    nav("/");
+    navigation("/");
   };
 
   const handleSave = () => {
