@@ -1,22 +1,24 @@
-import { createContext, useContext } from "react";
-import type { ReactNode } from "react";
-import { useTodos, type TodosStore } from "../hooks/useTodos";
+import { createContext, useContext, PropsWithChildren } from "react";
+import { useTodos } from "../hooks/useTodos";
+import type { Todo } from "../types/todo";
+import type { TodosAction } from "../store/todoReducer";
 
-const TodosContext = createContext<TodosStore | null>(null);
-
-interface TodosProviderProps {
-  children: ReactNode;
+export interface TodosContextType {
+  todos: Todo[];
+  dispatch: React.Dispatch<TodosAction>;
 }
 
-export const TodosProvider = ({ children }: TodosProviderProps) => {
+const TodosContext = createContext<TodosContextType | null>(null);
+
+export const TodosProvider = ({ children }: PropsWithChildren) => {
   const todosStore = useTodos();
   return <TodosContext.Provider value={todosStore}>{children}</TodosContext.Provider>;
 };
 
-export const useTodosContext = (): TodosStore => {
+export const useTodosContext = (): TodosContextType => {
   const ctx = useContext(TodosContext);
   if (!ctx) {
-    throw new Error("useTodosContext는 TodosProvider 안에서 사용해야 합니다.");
+    throw new Error("TodosProvider 안에서 사용해야 합니다.");
   }
   return ctx;
 };

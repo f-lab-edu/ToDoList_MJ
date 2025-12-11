@@ -4,10 +4,11 @@ import { KEY } from "./constants";
 import { useTodosContext } from "../context/TodosContext";
 
 const TodoInput = () => {
-  const { onCreate } = useTodosContext();
+  const { dispatch } = useTodosContext();
 
   const [content, setContent] = useState("");
   const contentRef = useRef<HTMLInputElement | null>(null);
+  const idRef = useRef<number>(0);
 
   const onChangeContent = (e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
@@ -24,7 +25,18 @@ const TodoInput = () => {
       contentRef.current?.focus();
       return;
     }
-    onCreate(content);
+
+    const newTodo = {
+      id: idRef.current++,
+      content,
+      isDone: false,
+      date: Date.now(),
+    };
+
+    dispatch({
+      type: "ADD",
+      payload: newTodo,
+    });
     setContent("");
   };
 

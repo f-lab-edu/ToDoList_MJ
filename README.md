@@ -32,7 +32,10 @@ src/
  │     └── TodosContext.tsx # Todo Context 파일
  │
  ├── hooks/
- │     └── useTodos.ts      # Todo 기능
+ │     └── useTodos.ts      # 상태저장
+ │
+ ├── store/
+ │     └── todoReducer.ts   # 비지니스로직
  │
  ├── services/
  │     └── todoStorage.ts   # localStorage 저장/로드

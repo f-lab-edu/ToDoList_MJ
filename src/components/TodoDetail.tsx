@@ -5,7 +5,7 @@ import "./TodoItem.css";
 import { useTodosContext } from "../context/TodosContext";
 
 const TodoDetail = () => {
-  const { todos, onEdit } = useTodosContext();
+  const { todos, dispatch } = useTodosContext();
 
   const navigation = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -22,33 +22,20 @@ const TodoDetail = () => {
     }
   }, [id, todos]);
 
-  const updateTodoContent = async () => {
-    if (!todo) return false;
-
-    await Promise.resolve(onEdit(todo.id, content));
-    return true;
-  };
-
-  const updateData = async () => {
-    try {
-      const ok = await updateTodoContent();
-
-      if (!ok) throw new Error("Invalid todo id");
-
-      alert("저장했습니다.");
-      navigation("/");
-    } catch (err) {
-      console.error(err);
-      alert("저장에 실패했습니다.");
-    }
-  };
-
   const handleCancel = () => {
     navigation("/");
   };
 
   const handleSave = () => {
-    updateData();
+    if (!todo) return;
+
+    dispatch({
+      type: "UPDATE",
+      payload: { id: todo.id, content },
+    });
+
+    alert("저장했습니다.");
+    navigation("/");
   };
 
   const onEditContent = (e: ChangeEvent<HTMLInputElement>) => {
