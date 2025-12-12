@@ -5,7 +5,7 @@ import "./TodoItem.css";
 import { useTodosContext } from "../context/TodosContext";
 
 const TodoDetail = () => {
-  const { todos, dispatch } = useTodosContext();
+  const { todos, updateTodo } = useTodosContext();
 
   const navigation = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -29,10 +29,7 @@ const TodoDetail = () => {
   const handleSave = () => {
     if (!todo) return;
 
-    dispatch({
-      type: "UPDATE",
-      payload: { id: todo.id, content },
-    });
+    updateTodo(todo.id, content);
 
     alert("저장했습니다.");
     navigation("/");

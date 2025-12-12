@@ -7,14 +7,14 @@ type TodoItemProps = { todo: Todo };
 
 const TodoItem = ({ todo }: TodoItemProps) => {
   const { id, isDone, content, date } = todo;
-  const { dispatch } = useTodosContext();
+  const { deleteTodo, toggleDone } = useTodosContext();
   const navigation = useNavigate();
 
   const onClickDelete = () => {
-    dispatch({ type: "DELETE", payload: id });
+    deleteTodo(id);
   };
   const onChangeCheckbox = () => {
-    dispatch({ type: "DONE", payload: id });
+    toggleDone(id);
   };
   const onClickLink = () => {
     navigation(`/view/${id}`, { state: { content } });

@@ -5,7 +5,10 @@ import type { TodosAction } from "../store/todoReducer";
 
 export interface TodosContextType {
   todos: Todo[];
-  dispatch: React.Dispatch<TodosAction>;
+  addTodo: (todo: Todo) => void;
+  deleteTodo: (id: number) => void;
+  updateTodo: (id: number, content: string) => void;
+  toggleDone: (id: number) => void;
 }
 
 const TodosContext = createContext<TodosContextType | null>(null);

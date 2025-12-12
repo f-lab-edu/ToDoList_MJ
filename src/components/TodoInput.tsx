@@ -4,7 +4,7 @@ import { KEY } from "./constants";
 import { useTodosContext } from "../context/TodosContext";
 
 const TodoInput = () => {
-  const { dispatch } = useTodosContext();
+  const { addTodo } = useTodosContext();
 
   const [content, setContent] = useState("");
   const contentRef = useRef<HTMLInputElement | null>(null);
@@ -33,10 +33,7 @@ const TodoInput = () => {
       date: Date.now(),
     };
 
-    dispatch({
-      type: "ADD",
-      payload: newTodo,
-    });
+    addTodo(newTodo);
     setContent("");
   };
 
