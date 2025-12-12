@@ -1,0 +1,42 @@
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.todo-item input.edit-input {
+  flex: 1;
+  font-size: 14px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.todo-item input.check-input {
+  width: auto;
+}
+.todo-item .tit {
+  flex: 1;
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
+}
+.todo-item .date {
+  font-size: 14px;
+  color: #999;
+}
+.todo-item .todo-btn {
+  cursor: pointer;
+  color: #999;
+  font-size: 12px;
+  border: none;
+  border-radius: 5px;
+  padding: 10.5px 8px;
+}
+
+.todo-item input.check-input:checked + .tit {
+  color: #999;
+  text-decoration: line-through;
+}
